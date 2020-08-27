@@ -1,0 +1,25 @@
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1598532291896'); /* IE9 */
+  src: url('iconfont.eot?t=1598532291896#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAOkAAsAAAAAB5gAAANYAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDBgqCfIJoATYCJAMMCwgABCAFhG0HOhuyBhHVmz/IvsbYNUCqZ2+OTNj9QsfWX6t0BUlqNOWUcYqPB/GB1iABAAAAALJqLXuWHgBUgBwxChOb8mGN4OIiCR2xj3HnP1zz/Tu7jY+mG80mMIqmAh9Q00gqOKIumtegx8Pzh/vzuq9NoY0pFEZl2eaowALO/1j2t8AG21PnPrcGL/BxlVba34tsxO042+Kme6pGRRiuRE2B39O89FxIs9caH2O+AiCXlK3/53J6d5XQ2N+yXOYaeNQLMA4ooL2xTVYgAXkOxFuXeR4IYBTlRd24rg0VgjGNADThk8OopExETTXRI6pkbQbtQOkLM8wtDljyv0+faJMeYGTAmNs0Lh9D8yXwHMTG3hhdBOLxHAC4TQAHpAAE0KjU1SXCVAqWUVHl+mJFIGys6P+/L1I1aqV/PAZUglFpBgAJMDAnJba5QPB/FIIMgE9WAD1gChwRkvuREq+aPZo5INvZe1qYVEf5YfJaMI638o1sn+/99C7V3KtQ4tk/TJYbUawEYaXNR6Z6fIsAYTsvFxQIpLAkMao9BvUb0URbQpnzVrLwrlzpsAwhYE6Ls+W6Wz9sUqw0PNpszT47+Bwzn5uGVVLamia/z4MrhkVlWxE9WnyvPxXF+529KnaUz9ORsywfelS5Pb9iiabHMIqzPrXS3T3JPz8Z8hNaAFnch/9oYJseYCafnkcDhcnu+WimYs9xg1ZSWG/n1lJp110KOaT5GLifNUt/YSn8513q9+U/IwC0aZiKKzJijDj5Z/0Gl8NXKmvL+/V1AQD4mR4WCGrTfGhvgf5W3AS/RtyyRahSw8yzLLJFepYrUbxxAQS8FxoMn5PVX+NpXQkQPU8MjE4EOL0YVJBSQDJJA0WvEIyS+TebuOQEygYASSoEiF0XGKsz4OxOqCCZIHn9QLEnDkYdybWnSVwiuegQTowrzH8wS4rSsrIIqm+o3n6ipNRnvJCyiUJT1tnsgBFpjAX5o1pmCZJSgJ5cht4n2ChZXLjUzFtXVbLsTeWSwkHoEE6MK8x/MEuK0u3MIvf5G6q3n6gGV+F9IWXTOzRl3QIdVLEV7lquyR/VMkuQlAL0xIHeTCXYykdZXLjUPRJbV1HtZFtVOb8mPN8uqDGaIxVSpKx66kMLxsyXqQnT4QA=') format('woff2'),
+  url('iconfont.woff?t=1598532291896') format('woff'),
+  url('iconfont.ttf?t=1598532291896') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1598532291896#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-icon-test:before {
+  content: "\e64d";
+}
+
+.icon-mima:before {
+  content: "\e8b2";
+}
+
