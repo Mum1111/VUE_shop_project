@@ -153,14 +153,14 @@ export default {
     },
     addCateDialogClosed () {
       // 当关闭添加分类对话框时，重置表单
-      this.$refs.addCateFormRef.resetFields()
+      this.$refs.addCateFormRuleForm.resetFields()
       this.selectedKeys = []
       this.addCateForm.cat_pid = 0
       this.addCateForm.cat_level = 0
     },
     addCate () {
       // 点击确定，完成添加分类
-      this.$refs.addCateFormRef.validate(async valid => {
+      this.$refs.addCateFormRuleForm.validate(async valid => {
         if (!valid) return
         // 发送请求完成添加分类
         const { data: res } = await this.$http.post(
@@ -173,7 +173,7 @@ export default {
         }
 
         this.$message.success('添加分类成功')
-        this.getCateList()
+        this.getGoodsCate()
         this.addCateDialogVisible = false
       })
     },
