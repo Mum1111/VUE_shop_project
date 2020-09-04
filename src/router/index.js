@@ -6,8 +6,12 @@ import Welcome from '../components/Welcome.vue'
 import User from '../components/users/Users.vue'
 import Rights from '../components/rights/Rights.vue'
 import Roles from '../components/rights/Roles.vue'
+import Cate from '../components/goods/Cate.vue'
+import TreeTable from 'vue-table-with-tree-grid'
 
 Vue.use(Router)
+
+Vue.component('tree-table', TreeTable)
 
 const routes = [
   { path: '/', redirect: '/login' },
@@ -20,7 +24,8 @@ const routes = [
       { path: '/welcome', component: Welcome },
       { path: '/users', component: User },
       { path: '/rights', component: Rights },
-      { path: '/roles', component: Roles }
+      { path: '/roles', component: Roles },
+      { path: '/categories', component: Cate }
     ]
   }
 ]
