@@ -35,8 +35,8 @@
                 <el-tag type="danger" closable v-for="(item,index) in scope.row.attr_vals" :key="index" @close="handleClose(index,scope.row)">{{item}}</el-tag>
                    <el-input
                       class="input-new-tag"
-                      v-if="inputVisible"
-                      v-model="inputValue"
+                      v-if="scope.row.inputVisible"
+                      v-model="scope.row.inputValue"
                       ref="saveTagInput"
                       size="small"
                       @keyup.enter.native="handleInputConfirm(scope.row)"
@@ -63,15 +63,30 @@
             <el-button type="primary" size="mini" :disabled="isButtondisabled">添加参数</el-button>
           <el-table :data="onlyTableData" border style="width: 100%">
             <!-- 展开行 -->
-            <el-table-column type="expand"></el-table-column>
+            <el-table-column type="expand">
+              <template slot-scope="scope">
+                <el-tag type="danger" closable v-for="(item,index) in scope.row.attr_vals" :key="index" @close="handleClose(index,scope.row)">{{item}}</el-tag>
+                   <el-input
+                      class="input-new-tag"
+                      v-if="scope.row.inputVisible"
+                      v-model="scope.row.inputValue"
+                      ref="saveTagInput"
+                      size="small"
+                      @keyup.enter.native="handleInputConfirm(scope.row)"
+                      @blur="handleInputConfirm(scope.row)"
+                    >
+                  </el-input>
+                  <el-button v-else class="button-new-tag" size="small" @click="showInput(scope.row)">+ New Tag</el-button>
+              </template>
+            </el-table-column>
             <el-table-column type="index" label="#"></el-table-column>
             <el-table-column label="属性名称" prop="attr_name"></el-table-column>
             <el-table-column label="操作" width="180px">
-            <template slot-scope="">
+            <template slot-scope="scope">
             <!-- 修改用户信息 -->
             <el-button type="primary" icon="el-icon-edit" circle @click="showeditDialogVisible((scope.row.attr_id))"></el-button>
             <!-- 删除用户信息 -->
-            <el-button type="danger" icon="el-icon-delete" circle ></el-button>
+            <el-button type="danger" icon="el-icon-delete" circle @click="removeParams(scope.row.attr_id)"></el-button>
           </template>
         </el-table-column>
           </el-table>
@@ -169,11 +184,18 @@ export default {
       if (this.activeName === 'many') {
         // 遍历循环res.data 让其中的attr_vals转换成数组 以便渲染到页面上
         res.data.forEach(item => {
+          item.inputVisible = false
+          item.inputValue = ''
           item.attr_vals = item.attr_vals ? item.attr_vals.split(' ') : []
         })
         this.manyTableData = res.data
         // console.log('many', this.manyTableData)
       } else {
+        res.data.forEach(item => {
+          item.inputVisible = false
+          item.inputValue = ''
+          item.attr_vals = item.attr_vals ? item.attr_vals.split(' ') : []
+        })
         this.onlyTableData = res.data
       }
 
@@ -244,27 +266,31 @@ export default {
     // 添加动态参数
     handleInputConfirm (row) {
       // 先判断用户输入的数据是否合法
-      console.log(this.inputValue)
-      if (this.inputValue.trim().length === 0) {
-        this.inputValue = ''
-        this.inputVisible = false
-        return
-      }
-      // this.inputVisible = false
-      // 如果用户输入了真实的数据 保存起来
-      row.attr_vals.push(this.inputValue.trim())
-      // 解决了发送两次请求的问题****
-      if (this.inputValue !== '') {
-        this.inputValue = ''
-        this.inputVisible = false
+
+      if (row.inputValue.trim().length !== 0) {
+        row.attr_vals.push(row.inputValue.trim())
+        row.inputValue = ''
+        row.inputVisible = false
+        console.log(row.inputValue)
         this.saveAttrVals(row)
       }
+
+      // 解决了发送两次请求的问题****
+      /* if (row.inputValue.trim().length !== 0) {
+        row.inputValue = ''
+        row.inputVisible = false
+
+      } */
+
+      // this.inputVisible = false
+      // 如果用户输入了真实的数据 保存起来
     },
 
     // 召唤出输入框
     showInput (row) {
+      console.log(row)
       // 这个显示只能在目标的焦点选中之前
-      this.inputVisible = true
+      row.inputVisible = true
       this.$nextTick(_ => {
         this.$refs.saveTagInput.$refs.input.focus()
         // this.$refs.saveTagInput.$refs.input.focus()
@@ -278,7 +304,12 @@ export default {
 
     // 封装一个保存可选项的操作的函数
     async saveAttrVals (row) {
-      const { data: res } = await this.$http.put(`categories/${this.cateId}/attributes/${row.attr_id}`, { attr_name: row.attr_name, attr_sel: row.attr_sel, attr_vals: row.attr_vals.join(' ') })
+      const { data: res } = await this.$http.put(`categories/${this.cateId}/attributes/${row.attr_id}`,
+        {
+          attr_name: row.attr_name,
+          attr_sel: this.activeName,
+          attr_vals: row.attr_vals.join(' ')
+        })
       if (res.meta.status !== 200) return this.$message.error('修改失败')
       this.$message.success('修改成功')
       // this.handleChange()
