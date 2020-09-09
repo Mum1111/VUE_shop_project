@@ -14,7 +14,7 @@
           </el-input>
         </el-col>
         <el-col :span="4">
-          <el-button type="primary">添加用户</el-button>
+          <el-button type="primary" @click="goToAdd">添加商品</el-button>
         </el-col>
       </el-row>
 
@@ -96,6 +96,10 @@ export default {
         this.$message.success(res.meta.msg)
         this.getGoodsList()
       }
+    },
+    // 编程式导航 前往add页面
+    goToAdd () {
+      this.$router.push('/goods/add')
     }
   }
 }

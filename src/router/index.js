@@ -10,6 +10,7 @@ import Cate from '../components/goods/Cate.vue'
 import TreeTable from 'vue-table-with-tree-grid'
 import GoodsParams from '../components/goods/GoodsParams.vue'
 import GoodList from '../components/goods/GoodList.vue'
+import Add from '../components/goods/Add.vue'
 
 Vue.use(Router)
 
@@ -29,7 +30,9 @@ const routes = [
       { path: '/roles', component: Roles },
       { path: '/categories', component: Cate },
       { path: '/params', component: GoodsParams },
-      { path: '/goods', component: GoodList }
+      { path: '/goods', component: GoodList },
+      { path: '/goods/add', component: Add }
+
     ]
   }
 ]
